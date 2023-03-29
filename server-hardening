@@ -1,0 +1,80 @@
+# The following procedure outlines the steps to harden your centOS server. This is a good practice.
+
+# Changing Single User password:
+
+1. start server,
+
+2. press ‘e’ at grub once the kernel is loaded,
+
+3. Choose kernel and press ‘e’,
+
+4. Press spacebar and enter ‘1’ after quiet and hit ‘enter’,
+
+5. Type ‘passwd root’ at command prompt,
+
+6. Enter your password 2ice,
+
+7. Reboot.
+
+# Modifying root passwd level 1:
+
+1. vi /etc/sysconfig/init,
+
+2. shift g, (this will take you to the end of the file),
+
+3. then change /sbin/sushell to /sbin/sulogin,
+
+4. Save and quit (wq!).
+
+# Modifying Grub Passwd:
+
+1. type grub-crypt,
+
+2. Copy encrypted password,
+
+3. vi /boot/grub/grub.conf;
+
+4. Type “shift :, set number,
+
+5. Navigate to line 13,
+
+6. Press ‘o’,
+
+7. type ‘password –encrypted’, then paste the encrypted password,
+
+8. then reboot.
+
+# Enforcing SElinux:
+
+1. Type getenforce ( to see enforcing state)
+
+2. vi /etc/Selinux/config,
+
+3. Navigate to selinux,
+
+4. Change level to Enforcing
+
+# Setting password policy: 
+
+1. vi /etc/login.defs and set password aging,
+
+2. Change max days password to 90
+
+# Deactivate root remote access/login: 
+
+1. vi /etc/ssh/sshd_config,
+
+2. Navigate to # PermitRootLogin = yes,
+
+3. Delete the #,
+
+4. Change the ‘yes’ to ‘no’,
+
+5. Save and quit,
+
+6. reboot.
+
+# Patching your Server's OS
+
+1. yum update –y
+
